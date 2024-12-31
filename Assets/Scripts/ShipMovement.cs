@@ -4,14 +4,19 @@ using UnityEngine.InputSystem;
 public class ShipMovement : MonoBehaviour
 {
 
-    void Start()
+    [SerializeField] private InputAction thrust;
+
+    private void OnEnable()
     {
-        
+        thrust.Enable();
     }
 
-
-    void Update()
+    private void Update()
     {
-        
+        if (thrust.IsPressed())
+        {
+            Debug.Log("Thrust");
+        }
     }
+
 }
