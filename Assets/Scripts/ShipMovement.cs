@@ -6,6 +6,7 @@ public class ShipMovement : MonoBehaviour
 
     private Rigidbody rb;
     private AudioSource audioSource;
+    private RigidbodyConstraints rbDefaultConstraints;
 
     [SerializeField] private float thrustPower;
     [SerializeField] private float rotationPower;
@@ -24,6 +25,8 @@ public class ShipMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
+
+        rbDefaultConstraints = rb.constraints;
     }
 
     private void FixedUpdate()
@@ -57,15 +60,24 @@ public class ShipMovement : MonoBehaviour
 
     private void HandleRotation()
     {
+        // cache inputs
         float _rotationInput = -rotation.ReadValue<float>();
         Vector3 _rotationVector = Vector3.forward * _rotationInput;
 
+        // handle rotation
         if (rotation.IsPressed())
         {
             Debug.Log("Rotation");
-            rb.freezeRotation = true;
+
+            // prevent physics interfering with player rotation
+            // add Z rotation freeze to rb.constraints
+            rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+
+            // apply rotation
             transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
-            rb.freezeRotation = false;
+
+            // revert to rb.constraints
+            rb.constraints = rbDefaultConstraints;
         }
     }
 
