@@ -822,6 +822,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: gravityValue
+      value: -5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
       propertyPath: rotationPower
       value: 100
       objectReference: {fileID: 0}

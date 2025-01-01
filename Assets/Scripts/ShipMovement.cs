@@ -10,6 +10,8 @@ public class ShipMovement : MonoBehaviour
     [SerializeField] private InputAction thrust;
     [SerializeField] private InputAction rotation;
 
+    [SerializeField] private float gravityValue;
+
     private void OnEnable()
     {
         thrust.Enable();
@@ -19,6 +21,7 @@ public class ShipMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Physics.gravity = new Vector3(0, gravityValue, 0);
     }
 
     private void FixedUpdate()
