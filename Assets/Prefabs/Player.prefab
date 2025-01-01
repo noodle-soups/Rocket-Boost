@@ -55,7 +55,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2.55, y: 1.95, z: 1}
-  m_Center: {x: 0.14, y: 0.96, z: 0}
+  m_Center: {x: 0.14, y: 0.43, z: 0}
 --- !u!54 &2414353548225772554
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -65,7 +65,7 @@ Rigidbody:
   m_GameObject: {fileID: 34796911529479373}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -81,7 +81,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 56
   m_CollisionDetection: 0
 --- !u!114 &2578355394695102522
 MonoBehaviour:
@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2073d83ca957409d6e6eefeb15365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thrustPower: 1000
+  rotationPower: 100
   thrust:
     m_Name: Thrust
     m_Type: 0
@@ -103,14 +105,54 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 3498e9f4-3a30-4862-9f12-d18007d8b89b
-      m_Path: <Keyboard>/space
+    - m_Name: Keyboard
+      m_Id: 6e2dc319-db42-4cf7-87f1-29c8a28b2b70
+      m_Path: 1DAxis
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Thrust
-      m_Flags: 0
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 79b62111-0cf0-455b-b81b-04c649801466
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: c4b0653a-6d59-44a4-abfc-c7c846e9df2c
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: Gamepad
+      m_Id: 63d2ad9b-e89a-4b9b-954c-f7b1b2487f93
+      m_Path: 1DAxis
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 4
+    - m_Name: negative
+      m_Id: 224a0e53-094e-47bd-ac4e-82cd20a18d69
+      m_Path: <Gamepad>/leftTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: positive
+      m_Id: 036aeb72-39ea-4c52-bea0-70d31cc45fb7
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
     m_Flags: 0
   rotation:
     m_Name: Rotation
@@ -169,7 +211,6 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
-  thrustPower: 1000
 --- !u!1001 &3095477789682608071
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -180,11 +221,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6377417671358724030, guid: cf91000b018c5e64d87fba48f5ab81b9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.00000011175871
       objectReference: {fileID: 0}
     - target: {fileID: 6377417671358724030, guid: cf91000b018c5e64d87fba48f5ab81b9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6377417671358724030, guid: cf91000b018c5e64d87fba48f5ab81b9, type: 3}
       propertyPath: m_LocalPosition.z
@@ -204,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6377417671358724030, guid: cf91000b018c5e64d87fba48f5ab81b9, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0.000000014901159
       objectReference: {fileID: 0}
     - target: {fileID: 6377417671358724030, guid: cf91000b018c5e64d87fba48f5ab81b9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ShipMovement : MonoBehaviour
+public class ShipMovementTest : MonoBehaviour
 {
 
     private Rigidbody rb;
