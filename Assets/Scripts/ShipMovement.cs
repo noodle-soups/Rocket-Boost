@@ -44,7 +44,9 @@ public class ShipMovement : MonoBehaviour
         if (rotation.IsPressed())
         {
             Debug.Log("Rotation");
+            rb.freezeRotation = true;
             transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
+            rb.freezeRotation = false;
         }
     }
 
