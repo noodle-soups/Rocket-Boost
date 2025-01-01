@@ -5,6 +5,8 @@ public class ShipMovement : MonoBehaviour
 {
 
     private Rigidbody rb;
+    private AudioSource audioSource;
+
     [SerializeField] private float thrustPower;
     [SerializeField] private float rotationPower;
 
@@ -21,6 +23,7 @@ public class ShipMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void FixedUpdate()
@@ -31,14 +34,24 @@ public class ShipMovement : MonoBehaviour
 
     private void HandleThrust()
     {
+        // cache inputs
         float _thrustInput = thrust.ReadValue<float>();
         Vector3 _thrustVector = Vector3.up * _thrustInput;
 
+        // handle thrust
         if (thrust.IsPressed())
         {
+            // apply force
             Debug.Log("Thrust");
-            Debug.Log(_thrustInput);
             rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
+
+            // play SFX
+            if (!audioSource.isPlaying) audioSource.Play();
+        }
+        else 
+        {
+            // stop SFX
+            audioSource.Stop();
         }
     }
 
