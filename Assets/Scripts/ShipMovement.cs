@@ -4,10 +4,11 @@ using UnityEngine.InputSystem;
 public class ShipMovement : MonoBehaviour
 {
 
-    [SerializeField] private InputAction thrust;
-    [SerializeField] private InputAction rotation;
     private Rigidbody rb;
     [SerializeField] private float thrustPower;
+    [SerializeField] private float rotationPower;
+    [SerializeField] private InputAction thrust;
+    [SerializeField] private InputAction rotation;
 
     private void OnEnable()
     {
@@ -23,13 +24,7 @@ public class ShipMovement : MonoBehaviour
     private void FixedUpdate()
     {
         HandleThrust();
-
-        float _rotationInput = rotation.ReadValue<float>();
-        if (rotation.IsPressed())
-        {
-            Debug.Log("Rotation");
-            Debug.Log(_rotationInput);
-        }
+        HandleRotation();
     }
 
     private void HandleThrust()
@@ -40,4 +35,18 @@ public class ShipMovement : MonoBehaviour
             rb.AddRelativeForce(Vector3.up * thrustPower * Time.fixedDeltaTime);
         }
     }
+
+    private void HandleRotation()
+    {
+        float _rotationInput = -rotation.ReadValue<float>();
+        Vector3 _rotationVector = new Vector3(0, 0, _rotationInput);
+
+        if (rotation.IsPressed())
+        {
+            Debug.Log("Rotation");
+            transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
+        }
+    }
+
+
 }
