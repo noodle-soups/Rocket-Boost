@@ -913,6 +913,70 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[0].m_Id
+      value: a2903412-5a67-4b05-8089-f836379ce5e7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[1].m_Id
+      value: 224a0e53-094e-47bd-ac4e-82cd20a18d69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[2].m_Id
+      value: 036aeb72-39ea-4c52-bea0-70d31cc45fb7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[3].m_Id
+      value: a2903412-5a67-4b05-8089-f836379ce5e7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[6].m_Id
+      value: a2903412-5a67-4b05-8089-f836379ce5e7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[0].m_Name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[0].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[1].m_Path
+      value: <Gamepad>/leftTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[2].m_Path
+      value: <Gamepad>/rightTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[3].m_Name
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[3].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[6].m_Path
+      value: <Keyboard>/space
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[0].m_Flags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[3].m_Flags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: thrust.m_SingletonActionBindings.Array.data[6].m_Action
+      value: Thrust
+      objectReference: {fileID: 0}
     - target: {fileID: 8396097152035745446, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15
