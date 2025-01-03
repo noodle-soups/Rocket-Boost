@@ -36,18 +36,18 @@ public class LevelComplete : MonoBehaviour
         if (collision.gameObject.tag == "Level Complete")
         {
             Debug.Log("Level Complete");
+            if (!levelComplete) audioSource.PlayOneShot(audioManagerScript.sfxLevelComplete);
             levelComplete = true;
             shipMovementScript.enabled = false;
-            audioSource.PlayOneShot(audioManagerScript.sfxLevelComplete);
             // turn off SFX
         }
 
         if (collision.gameObject.tag == "Death")
         {
             Debug.Log("Death");
+            if (!playerDeath) audioSource.PlayOneShot(audioManagerScript.sfxCrashExplosion);
             playerDeath = true;
             shipMovementScript.enabled = false;
-            audioSource.PlayOneShot(audioManagerScript.sfxCrashExplosion);
             // turn off SFX
         }
 

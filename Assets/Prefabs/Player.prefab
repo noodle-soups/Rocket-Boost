@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2073d83ca957409d6e6eefeb15365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustPower: 1000
+  thrustPower: 3000
   rotationPower: 100
   thrust:
     m_Name: Thrust
