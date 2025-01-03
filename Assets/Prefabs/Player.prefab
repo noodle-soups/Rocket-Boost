@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 8427645104512348419}
   - component: {fileID: 2578355394695102522}
   - component: {fileID: 7948742583871776722}
+  - component: {fileID: 458522678415486448}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,8 +96,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
-  m_Resource: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -270,6 +271,7 @@ MonoBehaviour:
       m_Action: Rotation
       m_Flags: 8
     m_Flags: 0
+  sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
 --- !u!114 &7948742583871776722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,6 +284,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f56457f12e215194abeb4979e8659082, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelComplete: 0
+  playerDeath: 0
+--- !u!114 &458522678415486448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34796911529479373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9856bd6de0884c44eab2833c35f66f85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
+  sfxLevelComplete: {fileID: 8300000, guid: 8d5f7dd9affb2ff4a88ed97907d59158, type: 3}
+  sfxCrashExplosion: {fileID: 8300000, guid: 0773e5d6c73d24243aeb824ec9c0b49b, type: 3}
 --- !u!1001 &3095477789682608071
 PrefabInstance:
   m_ObjectHideFlags: 0

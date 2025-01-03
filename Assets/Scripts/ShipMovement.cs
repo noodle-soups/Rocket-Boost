@@ -4,16 +4,22 @@ using UnityEngine.InputSystem;
 public class ShipMovement : MonoBehaviour
 {
 
+    // cache
     private Rigidbody rb;
-    private AudioSource audioSource;
     private RigidbodyConstraints rbDefaultConstraints;
+    private AudioSource audioSource;
+    private AudioManager audioManagerScript;
 
+    // params - movement
     [SerializeField] private float thrustPower;
     [SerializeField] private float rotationPower;
 
-    // input actions
+    // params - Input Actions
     [SerializeField] private InputAction thrust;
     [SerializeField] private InputAction rotation;
+
+    //
+    [SerializeField] private AudioClip sfxMainEngineThrust;
 
     private void OnEnable()
     {
@@ -24,9 +30,11 @@ public class ShipMovement : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audioSource = GetComponent<AudioSource>();
-
         rbDefaultConstraints = rb.constraints;
+
+        audioSource = GetComponent<AudioSource>();
+        audioManagerScript = GetComponent<AudioManager>();
+
     }
 
     private void FixedUpdate()
@@ -49,7 +57,7 @@ public class ShipMovement : MonoBehaviour
             rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
 
             // play SFX
-            if (!audioSource.isPlaying) audioSource.Play();
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(audioManagerScript.sfxMainEngineThrust);
         }
         else 
         {

@@ -18,13 +18,13 @@ public class UIManager : MonoBehaviour
     private GameObject uiLevelOver;
     private Button nextLevelButton;
 
-    // cache scene index
-    private int currentSceneIndex;
-    private int nextSceneIndex;
-
-    // reference Player & associated scripts
+    // cache Player & associated scripts
     [SerializeField] private GameObject player;
     private LevelComplete levelCompleteScript;
+
+    // params
+    private int currentSceneIndex;
+    private int nextSceneIndex;
 
     void Start()
     {
@@ -64,10 +64,8 @@ public class UIManager : MonoBehaviour
 
         if (levelCompleteScript.playerDeath)
         {
-            uiLevelOver.SetActive(true);
-            // make "Next Level (Button)" button not interactable
-            // "Next Level (Button)" is a child of uiLevelOver
             nextLevelButton.interactable = false;
+            uiLevelOver.SetActive(true);
         }
     }
 
