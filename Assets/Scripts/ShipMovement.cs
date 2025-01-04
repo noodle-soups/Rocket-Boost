@@ -8,7 +8,7 @@ public class ShipMovement : MonoBehaviour
     private Rigidbody rb;
     private RigidbodyConstraints rbDefaultConstraints;
     private AudioSource audioSource;
-    private AudioManager audioManagerScript;
+    private SfxManager sfxManagerScript;
 
     // params - movement
     [SerializeField] private float thrustPower;
@@ -33,7 +33,7 @@ public class ShipMovement : MonoBehaviour
         rbDefaultConstraints = rb.constraints;
 
         audioSource = GetComponent<AudioSource>();
-        audioManagerScript = GetComponent<AudioManager>();
+        sfxManagerScript = GetComponent<SfxManager>();
 
     }
 
@@ -57,7 +57,7 @@ public class ShipMovement : MonoBehaviour
             rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
 
             // play SFX
-            if (!audioSource.isPlaying) audioSource.PlayOneShot(audioManagerScript.sfxMainEngineThrust);
+            if (!audioSource.isPlaying) audioSource.PlayOneShot(sfxManagerScript.sfxMainEngineThrust);
         }
         else 
         {

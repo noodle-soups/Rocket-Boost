@@ -15,7 +15,8 @@ public class LevelComplete : MonoBehaviour
     // cache
     private ShipMovement shipMovementScript;
     private AudioSource audioSource;
-    private AudioManager audioManagerScript;
+    private SfxManager sfxManagerScript;
+    private VfxManager vfxManagerScript;
 
     // params
     public bool levelComplete;
@@ -26,7 +27,8 @@ public class LevelComplete : MonoBehaviour
         shipMovementScript = GetComponent<ShipMovement>();
 
         audioSource = GetComponent<AudioSource>();
-        audioManagerScript = GetComponent<AudioManager>();
+        sfxManagerScript = GetComponent<SfxManager>();
+        vfxManagerScript = GetComponent<VfxManager>();
 
         levelComplete = false;
     }
@@ -36,19 +38,25 @@ public class LevelComplete : MonoBehaviour
         if (collision.gameObject.tag == "Level Complete")
         {
             Debug.Log("Level Complete");
-            if (!levelComplete) audioSource.PlayOneShot(audioManagerScript.sfxLevelComplete);
+            if (!levelComplete) 
+            { 
+                audioSource.PlayOneShot(sfxManagerScript.sfxLevelComplete); 
+                vfxManagerScript.vfxLevelComplete.Play();
+            }
             levelComplete = true;
             shipMovementScript.enabled = false;
-            // turn off SFX
         }
 
         if (collision.gameObject.tag == "Death")
         {
             Debug.Log("Death");
-            if (!playerDeath) audioSource.PlayOneShot(audioManagerScript.sfxCrashExplosion);
+            if (!playerDeath) 
+            {
+                audioSource.PlayOneShot(sfxManagerScript.sfxCrashExplosion);
+                vfxManagerScript.vfxCrashExplosion.Play();
+            }
             playerDeath = true;
             shipMovementScript.enabled = false;
-            // turn off SFX
         }
 
     }
