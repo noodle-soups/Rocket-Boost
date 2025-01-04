@@ -9,6 +9,7 @@ public class ShipMovement : MonoBehaviour
     private RigidbodyConstraints rbDefaultConstraints;
     private AudioSource audioSource;
     private SfxManager sfxManagerScript;
+    private VfxManager vfxManagerScript;
 
     // params - movement
     [SerializeField] private float thrustPower;
@@ -34,6 +35,7 @@ public class ShipMovement : MonoBehaviour
 
         audioSource = GetComponent<AudioSource>();
         sfxManagerScript = GetComponent<SfxManager>();
+        vfxManagerScript = GetComponent<VfxManager>();
 
     }
 
@@ -58,11 +60,14 @@ public class ShipMovement : MonoBehaviour
 
             // play SFX
             if (!audioSource.isPlaying) audioSource.PlayOneShot(sfxManagerScript.sfxMainEngineThrust);
+
+            vfxManagerScript.vfxMainEngineThrust.Play();
         }
         else 
         {
             // stop SFX
             audioSource.Stop();
+            vfxManagerScript.vfxMainEngineThrust.Stop();
         }
     }
 
@@ -76,6 +81,7 @@ public class ShipMovement : MonoBehaviour
         if (rotation.IsPressed())
         {
             Debug.Log("Rotation");
+            Debug.Log(_rotationInput);
 
             // prevent physics interfering with player rotation
             // add Z rotation freeze to rb.constraints
@@ -86,6 +92,17 @@ public class ShipMovement : MonoBehaviour
 
             // revert to rb.constraints
             rb.constraints = rbDefaultConstraints;
+
+            // vfx
+            if (_rotationInput > 0f)
+                vfxManagerScript.vfxSideEngineThrustR.Play();
+            else if (_rotationInput < 0f)
+                vfxManagerScript.vfxSideEngineThrustL.Play();
+        }
+        else
+        {
+            vfxManagerScript.vfxSideEngineThrustR.Stop();
+            vfxManagerScript.vfxSideEngineThrustL.Stop();
         }
     }
 
