@@ -32,7 +32,6 @@ public class ShipMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rbDefaultConstraints = rb.constraints;
-
         audioSource = GetComponent<AudioSource>();
         sfxManagerScript = GetComponent<SfxManager>();
         vfxManagerScript = GetComponent<VfxManager>();
@@ -45,6 +44,8 @@ public class ShipMovement : MonoBehaviour
         HandleRotation();
     }
 
+
+    #region Thrust
     private void HandleThrust()
     {
         // cache inputs
@@ -54,23 +55,38 @@ public class ShipMovement : MonoBehaviour
         // handle thrust
         if (thrust.IsPressed())
         {
-            // apply force
-            Debug.Log("Thrust");
-            rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
-
-            // play SFX
-            if (!audioSource.isPlaying) audioSource.PlayOneShot(sfxManagerScript.sfxMainEngineThrust);
-
-            vfxManagerScript.vfxMainEngineThrust.Play();
+            OnStartThrust(_thrustVector);
         }
-        else 
+        else
         {
-            // stop SFX
-            audioSource.Stop();
-            vfxManagerScript.vfxMainEngineThrust.Stop();
+            OnStopThrust();
         }
     }
 
+    private void OnStartThrust(Vector3 _thrustVector)
+    {
+        // apply force
+        rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
+
+        // SFX
+        if (!audioSource.isPlaying) audioSource.PlayOneShot(sfxManagerScript.sfxMainEngineThrust);
+
+        // VFX
+        vfxManagerScript.vfxMainEngineThrust.Play();
+    }
+
+    private void OnStopThrust()
+    {
+        // SFX
+        audioSource.Stop();
+
+        // VFX
+        vfxManagerScript.vfxMainEngineThrust.Stop();
+    }
+    #endregion
+
+
+    #region Rotation
     private void HandleRotation()
     {
         // cache inputs
@@ -80,30 +96,38 @@ public class ShipMovement : MonoBehaviour
         // handle rotation
         if (rotation.IsPressed())
         {
-            Debug.Log("Rotation");
-            Debug.Log(_rotationInput);
-
-            // prevent physics interfering with player rotation
-            // add Z rotation freeze to rb.constraints
-            rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
-
-            // apply rotation
-            transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
-
-            // revert to rb.constraints
-            rb.constraints = rbDefaultConstraints;
-
-            // vfx
-            if (_rotationInput > 0f)
-                vfxManagerScript.vfxSideEngineThrustR.Play();
-            else if (_rotationInput < 0f)
-                vfxManagerScript.vfxSideEngineThrustL.Play();
+            OnStartRotation(_rotationInput, _rotationVector);
         }
         else
         {
-            vfxManagerScript.vfxSideEngineThrustR.Stop();
-            vfxManagerScript.vfxSideEngineThrustL.Stop();
+            OnStopRotation();
         }
     }
+
+    private void OnStartRotation(float _rotationInput, Vector3 _rotationVector)
+    {
+        // prevent physics interfering with player rotation
+        // add Z rotation freeze to rb.constraints
+        rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
+
+        // apply rotation
+        transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
+
+        // revert to rb.constraints
+        rb.constraints = rbDefaultConstraints;
+
+        // vfx
+        if (_rotationInput > 0f)
+            vfxManagerScript.vfxSideEngineThrustR.Play();
+        else if (_rotationInput < 0f)
+            vfxManagerScript.vfxSideEngineThrustL.Play();
+    }
+
+    private void OnStopRotation()
+    {
+        vfxManagerScript.vfxSideEngineThrustR.Stop();
+        vfxManagerScript.vfxSideEngineThrustL.Stop();
+    }
+    #endregion
 
 }
