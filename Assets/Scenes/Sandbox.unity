@@ -1249,6 +1249,79 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8396097152035745446, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
   m_PrefabInstance: {fileID: 4251459735656284655}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2115766057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 635152072}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60eb94aff0c0af24b92f12005f2551a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thrustPower: 10000
+  rotationPower: 250
+  thrust:
+    m_Name: Thrust
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d476b18a-3d0a-4120-add0-b66ced551cd2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: WASD
+      m_Id: d9096b25-58ae-422e-9328-aedbaafb95a5
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 4
+    - m_Name: up
+      m_Id: d0515426-0661-442c-a02e-a72528c8f9b2
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: down
+      m_Id: a8807bcf-8a6b-4803-9e3b-1b77081f8fbe
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 801f75c8-b6ef-433a-9383-bdf342c044c7
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: right
+      m_Id: b4d42204-71fc-4d29-a07f-cc4142931c03
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    m_Flags: 0
+  rotation:
+    m_Name: Rotation
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 0cba8a90-627f-4564-9f03-9d73df0d2948
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
 --- !u!1001 &1203251019927032169
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1383,6 +1456,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2414353548225772554, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2414353548225772554, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: m_Constraints
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2578355394695102522, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
       propertyPath: thrustPower
       value: 1500
@@ -1434,7 +1519,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 34796911529479373, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2115766057}
   m_SourcePrefab: {fileID: 100100000, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
