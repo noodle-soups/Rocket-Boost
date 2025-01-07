@@ -8,6 +8,7 @@ public class FloatingRock : MonoBehaviour
     [SerializeField] private float xRotation;
     [SerializeField] private float yRotation;
     [SerializeField] private float zRotation;
+    public float contactDamage;
 
     void Start()
     {

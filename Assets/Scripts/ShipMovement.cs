@@ -6,56 +6,60 @@ public class ShipMovement : MonoBehaviour
 
     // cache
     private Rigidbody rb;
-    private RigidbodyConstraints rbDefaultConstraints;
     private AudioSource audioSource;
     private SfxManager sfxManagerScript;
     private VfxManager vfxManagerScript;
 
     // params - movement
+    [Header("Movement")]
     [SerializeField] private float thrustPower;
-    [SerializeField] private float rotationPower;
+    [SerializeField] private float boostPower;
+    [SerializeField] private float boostCooldown;
+    [SerializeField] private bool boostReady = true;
 
     // params - Input Actions
+    [Header("Input Actions")]
     [SerializeField] private InputAction thrust;
-    [SerializeField] private InputAction rotation;
+    [SerializeField] private InputAction boost;
+    private Vector2 thrustInput;
 
-    //
+    [Header("SFX")]
     [SerializeField] private AudioClip sfxMainEngineThrust;
 
+
+    #region Execution Order
     private void OnEnable()
     {
         thrust.Enable();
-        rotation.Enable();
+        boost.Enable();
     }
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rbDefaultConstraints = rb.constraints;
         audioSource = GetComponent<AudioSource>();
         sfxManagerScript = GetComponent<SfxManager>();
         vfxManagerScript = GetComponent<VfxManager>();
-
     }
 
     private void FixedUpdate()
     {
         HandleThrust();
-        HandleRotation();
+        HandleBoost();
     }
+    #endregion
 
 
     #region Thrust
     private void HandleThrust()
     {
-        // cache inputs
-        float _thrustInput = thrust.ReadValue<float>();
-        Vector3 _thrustVector = Vector3.up * _thrustInput;
+        // cache input
+        thrustInput = thrust.ReadValue<Vector2>();
 
         // handle thrust
         if (thrust.IsPressed())
         {
-            OnStartThrust(_thrustVector);
+            OnStartThrust();
         }
         else
         {
@@ -63,10 +67,10 @@ public class ShipMovement : MonoBehaviour
         }
     }
 
-    private void OnStartThrust(Vector3 _thrustVector)
+    private void OnStartThrust()
     {
         // apply force
-        rb.AddRelativeForce(_thrustVector * thrustPower * Time.fixedDeltaTime);
+        rb.AddRelativeForce(thrustInput * thrustPower * Time.fixedDeltaTime);
 
         // SFX
         if (!audioSource.isPlaying) audioSource.PlayOneShot(sfxManagerScript.sfxMainEngineThrust);
@@ -86,47 +90,20 @@ public class ShipMovement : MonoBehaviour
     #endregion
 
 
-    #region Rotation
-    private void HandleRotation()
+    #region Boost
+    private void HandleBoost()
     {
-        // cache inputs
-        float _rotationInput = -rotation.ReadValue<float>();
-        Vector3 _rotationVector = Vector3.forward * _rotationInput;
-
-        // handle rotation
-        if (rotation.IsPressed())
+        if (boost.IsPressed() && boostReady)
         {
-            OnStartRotation(_rotationInput, _rotationVector);
-        }
-        else
-        {
-            OnStopRotation();
+            rb.AddForce(thrustInput * boostPower * Time.fixedDeltaTime, ForceMode.Impulse);
+            boostReady = false;
+            Invoke(nameof(ResetBoost), boostCooldown);
         }
     }
 
-    private void OnStartRotation(float _rotationInput, Vector3 _rotationVector)
+    private void ResetBoost()
     {
-        // prevent physics interfering with player rotation
-        // add Z rotation freeze to rb.constraints
-        rb.constraints |= RigidbodyConstraints.FreezeRotationZ;
-
-        // apply rotation
-        transform.Rotate(_rotationVector * rotationPower * Time.fixedDeltaTime);
-
-        // revert to rb.constraints
-        rb.constraints = rbDefaultConstraints;
-
-        // vfx
-        if (_rotationInput > 0f)
-            vfxManagerScript.vfxSideEngineThrustR.Play();
-        else if (_rotationInput < 0f)
-            vfxManagerScript.vfxSideEngineThrustL.Play();
-    }
-
-    private void OnStopRotation()
-    {
-        vfxManagerScript.vfxSideEngineThrustR.Stop();
-        vfxManagerScript.vfxSideEngineThrustL.Stop();
+        boostReady = true;
     }
     #endregion
 

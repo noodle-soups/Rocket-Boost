@@ -8,6 +8,8 @@ TagManager:
   - Fuel
   - Level Complete
   - Death
+  - Damage
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -10,13 +10,14 @@ GameObject:
   m_Component:
   - component: {fileID: 8396097152035745446}
   - component: {fileID: 2414353548225772554}
+  - component: {fileID: 1993666622766943399}
+  - component: {fileID: 970984513793215732}
   - component: {fileID: 8427645104512348419}
+  - component: {fileID: 6947292827711702879}
   - component: {fileID: 2578355394695102522}
   - component: {fileID: 7948742583871776722}
   - component: {fileID: 2047077551891571263}
   - component: {fileID: 1076113525938194021}
-  - component: {fileID: 1993666622766943399}
-  - component: {fileID: 970984513793215732}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -50,7 +51,7 @@ Rigidbody:
   m_GameObject: {fileID: 34796911529479373}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 1
+  m_Drag: 10
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -66,8 +67,52 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 56
+  m_Constraints: 120
   m_CollisionDetection: 0
+--- !u!136 &1993666622766943399
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34796911529479373}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.72
+  m_Height: 1.75
+  m_Direction: 1
+  m_Center: {x: 0.11, y: 0.6, z: -0.09}
+--- !u!65 &970984513793215732
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34796911529479373}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2.4, y: 0.25, z: 1}
+  m_Center: {x: 0.12, y: -0.36, z: 0}
 --- !u!82 &8427645104512348419
 AudioSource:
   m_ObjectHideFlags: 0
@@ -165,6 +210,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6947292827711702879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34796911529479373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ce681477d9316f4386c2835395c0194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHP: 100
+  playerDeath: 0
 --- !u!114 &2578355394695102522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,8 +236,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bc2073d83ca957409d6e6eefeb15365, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustPower: 3000
-  rotationPower: 100
+  thrustPower: 10000
+  boostPower: 5000
+  boostCooldown: 1
+  boostReady: 1
   thrust:
     m_Name: Thrust
     m_Type: 0
@@ -187,71 +248,63 @@ MonoBehaviour:
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: a2903412-5a67-4b05-8089-f836379ce5e7
-      m_Path: <Keyboard>/space
+    - m_Name: WASD
+      m_Id: 273e3ec5-8443-409d-b406-42da88e597f7
+      m_Path: 2DVector
       m_Interactions: 
       m_Processors: 
       m_Groups: 
       m_Action: Thrust
-      m_Flags: 0
-    m_Flags: 0
-  rotation:
-    m_Name: Rotation
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: fbeb0e51-3e1d-4144-a7e6-7d36076420ec
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings:
-    - m_Name: Keyboard
-      m_Id: a3b687c0-bc08-49d8-b548-0c8424dbe286
-      m_Path: 1DAxis
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 8de42c25-4669-4db4-9983-9cb0857fa7d9
+      m_Path: <Keyboard>/w
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Rotation
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: a8cca950-051a-489b-922a-25ea9cefb865
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: down
+      m_Id: bfb945c4-f7d0-47e7-9946-d27851c99305
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Thrust
+      m_Flags: 8
+    - m_Name: left
+      m_Id: 139e22a0-565e-4309-ba47-a50fe1b61f76
       m_Path: <Keyboard>/a
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Rotation
+      m_Action: Thrust
       m_Flags: 8
-    - m_Name: positive
-      m_Id: 9e8c4f35-e1b9-4d36-b79d-a791f20527be
+    - m_Name: right
+      m_Id: e1520e7b-d682-4bf2-b727-c17873730717
       m_Path: <Keyboard>/d
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Rotation
+      m_Action: Thrust
       m_Flags: 8
-    - m_Name: Gamepad
-      m_Id: 987106cb-927e-411d-a58a-06c0e26be75f
-      m_Path: 1DAxis
+    m_Flags: 0
+  boost:
+    m_Name: Boost
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 9b466586-562f-4511-91db-b4d84642821a
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: f68e3a19-d378-42f2-bde0-d609faada542
+      m_Path: <Keyboard>/space
       m_Interactions: 
       m_Processors: 
       m_Groups: 
-      m_Action: Rotation
-      m_Flags: 4
-    - m_Name: negative
-      m_Id: 89991420-0d9e-4699-81a1-f091b49db022
-      m_Path: <Gamepad>/leftStick/left
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 8
-    - m_Name: positive
-      m_Id: 7316129b-ea05-4621-8808-e9ae591562f1
-      m_Path: <Gamepad>/leftStick/right
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Rotation
-      m_Flags: 8
+      m_Action: Boost
+      m_Flags: 0
     m_Flags: 0
   sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
 --- !u!114 &7948742583871776722
@@ -300,50 +353,6 @@ MonoBehaviour:
   sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
   sfxLevelComplete: {fileID: 8300000, guid: 8d5f7dd9affb2ff4a88ed97907d59158, type: 3}
   sfxCrashExplosion: {fileID: 8300000, guid: 0773e5d6c73d24243aeb824ec9c0b49b, type: 3}
---- !u!136 &1993666622766943399
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34796911529479373}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.72
-  m_Height: 1.75
-  m_Direction: 1
-  m_Center: {x: 0.11, y: 0.6, z: -0.09}
---- !u!65 &970984513793215732
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34796911529479373}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.4, y: 0.25, z: 1}
-  m_Center: {x: 0.12, y: -0.36, z: 0}
 --- !u!1 &7092659766073984331
 GameObject:
   m_ObjectHideFlags: 0
