@@ -14,7 +14,6 @@ public class UIManager : MonoBehaviour
 
     // cache Player & associated scripts
     private GameObject player;
-    private LevelComplete levelCompleteScript;
     private PlayerDeathManager playerDeathManagerscript;
     private string playerName = "Player";
 

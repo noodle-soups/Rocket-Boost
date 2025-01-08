@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 8427645104512348419}
   - component: {fileID: 6947292827711702879}
   - component: {fileID: 2886704544666733743}
+  - component: {fileID: 5985234232259477572}
   - component: {fileID: 2578355394695102522}
-  - component: {fileID: 7948742583871776722}
   - component: {fileID: 2047077551891571263}
   - component: {fileID: 1076113525938194021}
   m_Layer: 0
@@ -238,6 +238,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDead: 0
+--- !u!114 &5985234232259477572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34796911529479373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ffb6ef4a6aed5194c99622cec5d03205, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelComplete: 0
+  levelCompleteSequencePlayed: 0
 --- !u!114 &2578355394695102522
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,20 +335,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   sfxMainEngineThrust: {fileID: 8300000, guid: fcf9255411063224cbccc7401f33c5d3, type: 3}
---- !u!114 &7948742583871776722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 34796911529479373}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f56457f12e215194abeb4979e8659082, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  levelComplete: 0
-  playerDeath: 0
 --- !u!114 &2047077551891571263
 MonoBehaviour:
   m_ObjectHideFlags: 0
