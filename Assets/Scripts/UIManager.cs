@@ -6,69 +6,67 @@ public class UIManager : MonoBehaviour
 {
 
 
-    /* UI MANAGER
-     * 
-     * Script to hide / unhide UIs
-     * Also houses UI methods like loading scenes
-     * 
-     */
-
-
-    // cache child UIs
+    // ui level over
     private GameObject uiLevelOver;
     private Button nextLevelButton;
+    private string uiLevelOverName = "Level Over UI";
+    private string uiNextLevelButtonName = "Next Level (Button)";
 
     // cache Player & associated scripts
-    [SerializeField] private GameObject player;
+    private GameObject player;
     private LevelComplete levelCompleteScript;
+    private PlayerDeathManager playerDeathManagerscript;
+    private string playerName = "Player";
 
     // params
     private int currentSceneIndex;
     private int nextSceneIndex;
 
+
     void Start()
     {
-        // cache Level Over UI & make sure it is inactive
-        uiLevelOver = GameObject.Find("Level Over UI");
-        DeactivateLevelOverUIOnStart();
+        // prep ui level over
+        PrepUI();
 
-        Transform _nextLevelButtonTransform = uiLevelOver.transform.Find("Next Level (Button)");
+        // player scripts
+        player = GameObject.Find(playerName);
+        playerDeathManagerscript = player.GetComponent<PlayerDeathManager>();
+
+        // scene indicies
+        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        nextSceneIndex = currentSceneIndex + 1;
+    }
+
+
+    #region Prep UI
+    private void PrepUI()
+    {
+        // cache UI
+        uiLevelOver = GameObject.Find(uiLevelOverName);
+
+        // cache the buttons
+        Transform _nextLevelButtonTransform = uiLevelOver.transform.Find(uiNextLevelButtonName);
         nextLevelButton = _nextLevelButtonTransform.GetComponent<Button>();
 
-        // cache the Level Complete script
-        // we need the levelComplete bool to know when to activate UIs
-        levelCompleteScript = player.GetComponent<LevelComplete>();
-
-        // cache scene indicies
-        currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        nextSceneIndex = currentSceneIndex+1;
-    }
-
-    private void Update()
-    {
-        ActivateLevelOverUI();
-    }
-
-    private void DeactivateLevelOverUIOnStart()
-    {
+        // ensure UI is not active
         if (uiLevelOver == null)
             return;
         else
             uiLevelOver.SetActive(false);
     }
+    #endregion
 
-    private void ActivateLevelOverUI()
+
+    #region Activate Level Over UI on Player Death or Level Complete
+    public void ActivateLevelOverUI(bool _nextLevelVisible)
     {
-        if (levelCompleteScript.levelComplete)
-            uiLevelOver.SetActive(true);
-
-        if (levelCompleteScript.playerDeath)
-        {
-            nextLevelButton.interactable = false;
-            uiLevelOver.SetActive(true);
-        }
+        nextLevelButton.interactable = _nextLevelVisible;
+        uiLevelOver.SetActive(true);
     }
+    #endregion
 
+
+    #region Load Scenes
     public void LoadCurrentScene()
     {
         SceneManager.LoadScene(currentSceneIndex);
@@ -78,5 +76,7 @@ public class UIManager : MonoBehaviour
     {
         SceneManager.LoadScene(nextSceneIndex);
     }
+    #endregion
+
 
 }

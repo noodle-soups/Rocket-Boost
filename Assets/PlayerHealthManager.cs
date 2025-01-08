@@ -3,15 +3,9 @@ using UnityEngine;
 public class PlayerHealthManager : MonoBehaviour
 {
 
-    [SerializeField] private float playerHP;
+    public float playerHP;
     public bool playerDeath = false;
 
-    private void Update()
-    {
-        Debug.Log(playerHP);
-
-        if (playerHP <= 0f) playerDeath = true;
-    }
 
     private void ClampPlayerHP()
     {
@@ -25,6 +19,7 @@ public class PlayerHealthManager : MonoBehaviour
             Debug.Log("Enemy Contact");
             // push back + eye frames?
             PlayerTakesDamage(collision.gameObject);
+            Debug.Log(playerHP);
         }
     }
 
