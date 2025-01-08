@@ -305,24 +305,6 @@ MonoBehaviour:
     Time: 0
     Smoothing: 0
     IgnoreY: 0
---- !u!1 &323087613 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 957862513573630671, guid: 8b547a85aad487d499c3ecbc72e9ea14, type: 3}
-  m_PrefabInstance: {fileID: 1013836615}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &323087619
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 323087613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: afc5240629fdebd44bedec08043b372f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  contactDamage: 50
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -708,11 +690,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f450c904f8fc48647aedba1cf2f859c4, type: 3}
---- !u!1 &635152072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 34796911529479373, guid: 02f0cc9dec6616448a7e1a4c5351f062, type: 3}
-  m_PrefabInstance: {fileID: 4251459735656284655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &691762785
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,21 +901,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Floating Rock
       objectReference: {fileID: 0}
-    - target: {fileID: 957862513573630671, guid: 8b547a85aad487d499c3ecbc72e9ea14, type: 3}
-      propertyPath: m_TagString
-      value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071365629817010229, guid: 8b547a85aad487d499c3ecbc72e9ea14, type: 3}
-      propertyPath: contactDamage
-      value: 200
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 957862513573630671, guid: 8b547a85aad487d499c3ecbc72e9ea14, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 323087619}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8b547a85aad487d499c3ecbc72e9ea14, type: 3}
 --- !u!4 &1101159327 stripped
 Transform:
@@ -1385,18 +1351,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2564430227314211291, guid: 28a99ef9b8e06f34c954ce05188e72cc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4206832292523036661, guid: 28a99ef9b8e06f34c954ce05188e72cc, type: 3}
       propertyPath: m_Name
       value: UI
       objectReference: {fileID: 0}
-    - target: {fileID: 6987530920865979476, guid: 28a99ef9b8e06f34c954ce05188e72cc, type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 635152072}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
